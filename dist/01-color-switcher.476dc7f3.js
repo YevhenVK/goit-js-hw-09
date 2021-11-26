@@ -157,6 +157,10 @@ class CreateColors {
     clearInterval(this.intervalId);
     this.startBtn.disabled = false;
     this.stopBtn.disabled = true;
+
+    if (this.stopBtn.disabled = true) {
+      this.bodyColor.style.backgroundColor = null;
+    }
   }
 
 }

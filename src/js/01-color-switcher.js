@@ -33,6 +33,9 @@ class CreateColors {
         clearInterval(this.intervalId);
         this.startBtn.disabled = false;
         this.stopBtn.disabled = true;
+        if (this.stopBtn.disabled = true) {
+            this.bodyColor.style.backgroundColor = null;
+        }
     }
 };
 
@@ -46,5 +49,6 @@ refs.stopBtn.addEventListener('click', createColors.stop.bind(createColors));
 
 //Для генерации случайного цвета используй функцию getRandomHexColor.
 function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+

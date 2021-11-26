@@ -159,7 +159,7 @@ class CreateColors {
     this.stopBtn.disabled = true;
 
     if (this.stopBtn.disabled = true) {
-      this.bodyColor.style.backgroundColor = null;
+      this.bodyColor.style.backgroundColor = null; // очищаем фон
     }
   }
 

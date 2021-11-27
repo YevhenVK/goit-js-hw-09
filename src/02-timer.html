@@ -6,32 +6,12 @@
     <title>Countdown timer</title>
     <link rel="stylesheet" href="css/common.css" />
   </head>
+ 
   <body>
     <p><a href="index.html">Go back</a></p>
 
     <input type="text" id="datetime-picker" />
     <button type="button" data-start>Start</button>
-    <style>
-      input {
-        padding: 15px 20px;
-        margin-bottom: 20px;
-        font-size: 20px;
-      }
-      button {
-        padding: 12px 30px;
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
-      .timer {
-        display: flex;
-      }
-      .field {
-        font-size: 40px;
-      }
-      .field:not(:last-child) {
-        margin-right: 15px;
-      }
-    </style>
     <div class="timer">
       <div class="field">
         <span class="value" data-days>00</span>
@@ -50,6 +30,31 @@
         <span class="label">Seconds</span>
       </div>
     </div>
+    <!-- <style>
+      input {
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+    
+      button {
+        padding: 12px 30px;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+    
+      .timer {
+        display: flex;
+      }
+    
+      .field {
+        font-size: 40px;
+      }
+    
+      .field:not(:last-child) {
+        margin-right: 15px;
+      }
+    </style> -->
 
     <script src="js/02-timer.js"></script>
   </body>

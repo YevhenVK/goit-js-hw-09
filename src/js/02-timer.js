@@ -1,57 +1,104 @@
+// es modules are recommended, if available, especially for typescript
+import flatpickr from "flatpickr"; 
+// Дополнительный импорт стилей
+import "flatpickr/dist/flatpickr.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Report } from 'notiflix/build/notiflix-report-aio';
+// import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+// import { Loading } from 'notiflix/build/notiflix-loading-aio';
+// import { Block } from 'notiflix/build/notiflix-block-aio';
 
 
 
-
-
-
-
-
-
-const logger = time => {
-  console.log(`Лог через ${time}ms, потому что не отменили таймаут`);
-};
-
-const timerId = setTimeout(logger, 2000, 2000);
-
-console.log(timerId);
-
-const shouldCancelTimer = Math.random() > 0.3;
-console.log(shouldCancelTimer);
-
-if (shouldCancelTimer) {
-  clearTimeout(timerId);
+const refs = {
+    dataTimePicker: document.querySelector('input[type="text"]'),
+    dataBtnStart: document.querySelector('button[data-start]'),
+    dataDaysValue: document.querySelector('span[data-days]'),
+    dataHoursValue: document.querySelector('span[data-hours]'),
+    dataMinValue: document.querySelector('span[data-minutes]'),
+    dataSecValue: document.querySelector('span[data-seconds]'),
+    intervalID: null,
+    selectedDate: null   
 }
 
 
+const options = {
+    enableTime: true,
+    time_24hr: true,
+    defaultDate: new Date(),
+    minuteIncrement: 1,
+    onClose(selectedDates) {
+    if (selectedDates[0].getTime() < Date.now()) {
+        Notify.failure('Please choose a date in the future');
+    }
+    if (selectedDates[0].getTime() > Date.now()) {
+        refs.dataBtnStart.disabled = false;
+        refs.selectedDate = selectedDates[0].getTime();
+    }
+    
+    console.log(selectedDates[0]);
+  }
+};
+
+const TIMEDELAY_KEY = 1000;
+const dataSwitch = flatpickr(refs.dataTimePicker, options);
+refs.dataBtnStart.addEventListener('click', onClickBtn);
 
 
 
+function onClickBtn() {
+    refs.dataTimePicker.disabled = true;
+    refs.dataBtnStart.disabled = true;
+    onGetTime();
+    refs.intervalID = setInterval(onGetTime, TIMEDELAY_KEY)
+};
 
-// // Устанавливаем конечную дату в миллисекундах. То есть дату когда закончится отчет
-// let startDate = new Date("Sep 16, 2021 10:00:00").getTime();
+refs.dataBtnStart.disabled = true;//// кнопка блокирована
 
-// // Обновляем таймер каждую секунду
-// let x = setInterval(function() {
+function onGetTime() {
+    const newTime = new Date();
+    const checkTime = refs.selectedDate;
+    const diffTime = checkTime - newTime;
+    const microTime = convertMs(diffTime);
 
-//     // Получаем текущее время в миллисекундах
-//     let now = new Date().getTime();
+    if (diffTime < TIMEDELAY_KEY) {
+        clearInterval(refs.intervalID);
+    }
+    timeCalendar(microTime);
+}
 
-//     // Узнаем разницу во времени, между текущей даты и конечной даты
-//     let diff = (startDate - now);
+function timeCalendar({ days, hours, minutes, seconds }) {
+    refs.dataDaysValue.textContent = `${days}`;
+    refs.dataHoursValue.textContent = `${hours}`;
+    refs.dataMinValue.textContent = `${minutes}`;
+    refs.dataSecValue.textContent = `${seconds}`;
+};
 
-//     // Считаем дни, часы, минуты и секунды
-//     let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-//     let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//     let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-//     let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-//     // Отображаем результат в блоке с id="countdown"
-//     document.getElementById("countdown").innerHTML = days + "д " + hours + "ч "
-//         + minutes + "м " + seconds + "с ";
+function convertMs(ms) {
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
 
-//     // Если время истекло, то вместо таймера выводим некий текст.
-//     if (diff < 0) {
-//         clearInterval(x);
-//         document.getElementById("countdown").innerHTML = "Акция истекла";
-//     }
-// }, 1000);
+  // Remaining days
+  const days = addLeadingZero(Math.floor(ms / day));
+  // Remaining hours
+  const hours = addLeadingZero(Math.floor((ms % day) / hour));
+  // Remaining minutes
+  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
+  // Remaining seconds
+  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
+
+  return { days, hours, minutes, seconds };
+};
+
+// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+
+
+function addLeadingZero(value) {
+    return String(value).padStart(2, '0');
+};

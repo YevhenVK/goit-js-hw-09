@@ -8,8 +8,6 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Loading } from 'notiflix/build/notiflix-loading-aio';
 // import { Block } from 'notiflix/build/notiflix-block-aio';
 
-
-
 const refs = {
     dataTimePicker: document.querySelector('input[type="text"]'),
     dataBtnStart: document.querySelector('button[data-start]'),
@@ -20,7 +18,6 @@ const refs = {
     intervalID: null,
     selectedDate: null   
 }
-
 
 const options = {
     enableTime: true,
@@ -35,7 +32,6 @@ const options = {
         refs.dataBtnStart.disabled = false;
         refs.selectedDate = selectedDates[0].getTime();
     }
-    
     console.log(selectedDates[0]);
   }
 };
@@ -43,7 +39,7 @@ const options = {
 const TIMEDELAY_KEY = 1000;
 const dataSwitch = flatpickr(refs.dataTimePicker, options);
 refs.dataBtnStart.addEventListener('click', onClickBtn);
-
+refs.dataBtnStart.disabled = true;//// кнопка блокирована
 
 
 function onClickBtn() {
@@ -53,7 +49,8 @@ function onClickBtn() {
     refs.intervalID = setInterval(onGetTime, TIMEDELAY_KEY)
 };
 
-refs.dataBtnStart.disabled = true;//// кнопка блокирована
+
+
 
 function onGetTime() {
     const newTime = new Date();

@@ -3195,6 +3195,7 @@ const options = {
 const TIMEDELAY_KEY = 1000;
 const dataSwitch = (0, _flatpickr.default)(refs.dataTimePicker, options);
 refs.dataBtnStart.addEventListener('click', onClickBtn);
+refs.dataBtnStart.disabled = true; //// кнопка блокирована
 
 function onClickBtn() {
   refs.dataTimePicker.disabled = true;
@@ -3204,7 +3205,6 @@ function onClickBtn() {
 }
 
 ;
-refs.dataBtnStart.disabled = true; //// кнопка блокирована
 
 function onGetTime() {
   const newTime = new Date();

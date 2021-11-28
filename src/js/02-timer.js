@@ -33,7 +33,9 @@ const options = {
 };
 
 const TIMEDELAY_KEY = 1000;
-const dataSwitch = flatpickr(refs.dataTimePicker, options);//добавил возможность выбора календарной даты
+
+const dataSwitch = flatpickr(refs.dataTimePicker, options);//выбор календарной даты
+
 refs.dataBtnStart.addEventListener('click', onClickBtn);
 refs.dataBtnStart.disabled = true;//// кнопка блокирована
 

@@ -3240,13 +3240,13 @@ function convertMs(ms) {
   const hour = minute * 60;
   const day = hour * 24; // Remaining days
 
-  const days = addLeadingZero(Math.floor(ms / day)); // Remaining hours
+  const days = Math.floor(ms / day); // Remaining hours
 
-  const hours = addLeadingZero(Math.floor(ms % day / hour)); // Remaining minutes
+  const hours = Math.floor(ms % day / hour); // Remaining minutes
 
-  const minutes = addLeadingZero(Math.floor(ms % day % hour / minute)); // Remaining seconds
+  const minutes = Math.floor(ms % day % hour / minute); // Remaining seconds
 
-  const seconds = addLeadingZero(Math.floor(ms % day % hour % minute / second));
+  const seconds = Math.floor(ms % day % hour % minute / second);
   return {
     days,
     hours,
@@ -3255,15 +3255,12 @@ function convertMs(ms) {
   };
 }
 
-; // console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
-function addLeadingZero(value) {
-  return String(value).padStart(2, '0');
-}
-
 ;
+console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+
+console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+
+console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 },{"flatpickr":"../node_modules/flatpickr/dist/esm/index.js","flatpickr/dist/flatpickr.min.css":"../node_modules/flatpickr/dist/flatpickr.min.css","notiflix/build/notiflix-notify-aio":"../node_modules/notiflix/build/notiflix-notify-aio.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

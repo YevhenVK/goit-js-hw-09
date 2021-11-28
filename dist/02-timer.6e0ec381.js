@@ -3158,10 +3158,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // es modules are recommended, if available, especially for typescript
 // Дополнительный импорт стилей
-// import { Report } from 'notiflix/build/notiflix-report-aio';
-// import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
-// import { Loading } from 'notiflix/build/notiflix-loading-aio';
-// import { Block } from 'notiflix/build/notiflix-block-aio';
 const refs = {
   dataTimePicker: document.querySelector('input[type="text"]'),
   dataBtnStart: document.querySelector('button[data-start]'),
@@ -3179,13 +3175,13 @@ const options = {
   minuteIncrement: 1,
 
   onClose(selectedDates) {
-    if (selectedDates[0].getTime() < Date.now()) {
-      _notiflixNotifyAio.Notify.failure('Please choose a date in the future');
+    if (selectedDates[0] < Date.now()) {
+      return _notiflixNotifyAio.Notify.failure('Please choose a date in the future');
     }
 
-    if (selectedDates[0].getTime() > Date.now()) {
+    if (selectedDates[0] > Date.now()) {
       refs.dataBtnStart.disabled = false;
-      refs.selectedDate = selectedDates[0].getTime();
+      refs.selectedDate = selectedDates[0];
     }
 
     console.log(selectedDates[0]);

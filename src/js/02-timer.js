@@ -4,7 +4,6 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-
 const refs = {
     dataTimePicker: document.querySelector('input[type="text"]'),
     dataBtnStart: document.querySelector('button[data-start]'),

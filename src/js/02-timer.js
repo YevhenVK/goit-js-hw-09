@@ -12,7 +12,7 @@ const refs = {
     dataMinValue: document.querySelector('span[data-minutes]'),
     dataSecValue: document.querySelector('span[data-seconds]'),
     intervalID: null,
-    selectedDate: null   
+    selectedDate: null
 }
 
 const options = {

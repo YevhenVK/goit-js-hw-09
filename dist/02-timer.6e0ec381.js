@@ -3193,7 +3193,8 @@ const options = {
 
 };
 const TIMEDELAY_KEY = 1000;
-const dataSwitch = (0, _flatpickr.default)(refs.dataTimePicker, options);
+const dataSwitch = (0, _flatpickr.default)(refs.dataTimePicker, options); //добавил возможность выбора календарной даты
+
 refs.dataBtnStart.addEventListener('click', onClickBtn);
 refs.dataBtnStart.disabled = true; //// кнопка блокирована
 
@@ -3255,12 +3256,9 @@ function convertMs(ms) {
   };
 }
 
-;
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+; // console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 },{"flatpickr":"../node_modules/flatpickr/dist/esm/index.js","flatpickr/dist/flatpickr.min.css":"../node_modules/flatpickr/dist/flatpickr.min.css","notiflix/build/notiflix-notify-aio":"../node_modules/notiflix/build/notiflix-notify-aio.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

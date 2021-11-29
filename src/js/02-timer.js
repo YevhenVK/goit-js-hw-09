@@ -37,13 +37,15 @@ const TIMEDELAY_KEY = 1000;
 const dataSwitch = flatpickr(refs.dataTimePicker, options);//выбор календарной даты
 
 refs.dataBtnStart.addEventListener('click', onClickBtn);
-refs.dataBtnStart.disabled = true;//// кнопка блокирована
+refs.dataBtnStart.disabled = true; //// кнопка блокирована
 
 
 function onClickBtn() {
     refs.dataTimePicker.disabled = true;
     refs.dataBtnStart.disabled = true;
+
     onGetTime();
+    
     refs.intervalID = setInterval(onGetTime, TIMEDELAY_KEY)
 };
 
@@ -54,10 +56,11 @@ function onGetTime() {
     const diffTime = checkTime - newTime;
     const microTime = convertMs(diffTime);
 
+    timeCalendar(microTime);
+
     if (diffTime < TIMEDELAY_KEY) {
         clearInterval(refs.intervalID);
     }
-    timeCalendar(microTime);
 }
 
 function timeCalendar({ days, hours, minutes, seconds }) {

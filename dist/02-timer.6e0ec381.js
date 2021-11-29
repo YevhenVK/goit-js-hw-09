@@ -3208,12 +3208,11 @@ function onGetTime() {
   const checkTime = refs.selectedDate;
   const diffTime = checkTime - newTime;
   const microTime = convertMs(diffTime);
+  timeCalendar(microTime);
 
   if (diffTime < TIMEDELAY_KEY) {
     clearInterval(refs.intervalID);
   }
-
-  timeCalendar(microTime);
 }
 
 function timeCalendar({

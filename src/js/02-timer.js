@@ -56,11 +56,10 @@ function onGetTime() {
     const diffTime = checkTime - newTime;
     const microTime = convertMs(diffTime);
 
-    timeCalendar(microTime);
-
     if (diffTime < TIMEDELAY_KEY) {
-        clearInterval(refs.intervalID);
+        clearInterval(refs.selectedDate);
     }
+    timeCalendar(microTime);
 }
 
 function timeCalendar({ days, hours, minutes, seconds }) {

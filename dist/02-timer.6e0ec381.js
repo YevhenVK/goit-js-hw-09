@@ -3208,11 +3208,12 @@ function onGetTime() {
   const checkTime = refs.selectedDate;
   const diffTime = checkTime - newTime;
   const microTime = convertMs(diffTime);
-  timeCalendar(microTime);
 
   if (diffTime < TIMEDELAY_KEY) {
-    clearInterval(refs.intervalID);
+    clearInterval(refs.selectedDate);
   }
+
+  timeCalendar(microTime);
 }
 
 function timeCalendar({
@@ -3287,7 +3288,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56060" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53890" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

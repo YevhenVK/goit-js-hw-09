@@ -713,8 +713,7 @@ const refs = {
   formDelay: document.querySelector('.form'),
   numberDelay: document.querySelector('input[name="step"]'),
   nameDelay: document.querySelector('input[name="delay"]'),
-  amountDelay: document.querySelector('input[name="amount"]'),
-  buttonSubmit: document.querySelector('button[type="submit"]')
+  amountDelay: document.querySelector('input[name="amount"]')
 };
 refs.formDelay.addEventListener('submit', onClickBtn);
 
@@ -866,7 +865,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53890" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49199" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
